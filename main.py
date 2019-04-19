@@ -92,6 +92,8 @@ def create_dict_for_all_languages_hh(list_of_languages):
     return dict_for_all_languages
 
 def build_table_of_data_hh(list_of_languages):
+    '''This function builds a data table from sj.ru data 
+    '''
     title = 'HeadHunter Moscow'
     data_dict = create_dict_for_all_languages_hh(list_of_languages)
     big_list = []
@@ -186,6 +188,8 @@ def create_dict_for_all_languages_sj(list_of_languages, api_headers):
     return dict_for_all_languages
 
 def build_table_of_data_sj(list_of_languages, api_headers):
+    '''This function builds a data table from sj.ru data 
+    '''
     title = 'SuperJob Moscow'
     data_dict = create_dict_for_all_languages_sj(list_of_languages, api_headers)
     big_list = []
@@ -199,6 +203,8 @@ def build_table_of_data_sj(list_of_languages, api_headers):
     print(AsciiTable(big_list, title).table)
 
 def main(list_of_languages, api_headers):
+    '''This function demo two data tables from hh.ru and sj.ru data 
+    '''
     search_vacanciones_list = [build_table_of_data_hh(list_of_languages),
     build_table_of_data_sj(list_of_languages, api_headers)]
     for search in search_vacanciones_list:
@@ -215,8 +221,4 @@ if __name__ == '__main__':
                     'X-Api-App-Id':str(TOKEN)
     }
 
-    # api_headers={'X-Api-App-Id':'v3.r.129906371.1f07cdffa89b0719d6c3a8fe981de12308511424.e5736dc7f47c9cec9abc6e3a0fe89da62b079841'}
-
-    # build_table_of_data_hh(list_of_languages)
-    # build_table_of_data_sj(list_of_languages, api_headers=api_headers)
     main(list_of_languages, api_headers)

@@ -203,7 +203,7 @@ def build_table_of_data_sj(list_of_languages, api_headers):
     print(AsciiTable(big_list, title).table)
 
 def main(list_of_languages, api_headers):
-    '''This function demo two data tables from hh.ru and sj.ru data 
+    '''This function print two data tables from hh.ru and sj.ru data 
     '''
     search_vacanciones_list = [build_table_of_data_hh(list_of_languages),
     build_table_of_data_sj(list_of_languages, api_headers)]

@@ -1,6 +1,5 @@
 import requests
 from dotenv import load_dotenv
-load_dotenv()
 import os
 from terminaltables import AsciiTable
 
@@ -215,6 +214,8 @@ list_of_languages=['typescript', 'swift', 'scala', 'objective-c',
 
 
 if __name__ == '__main__':
+    
+    load_dotenv()
 
     TOKEN = os.getenv('TOKEN')
     api_headers = {

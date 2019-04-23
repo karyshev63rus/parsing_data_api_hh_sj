@@ -5,8 +5,8 @@ from terminaltables import AsciiTable
 
 
 LANGUAGES = [
-    'typescript', 'swift', 'scala', 'objective-c', 'shell', 'go', 
-    'c#', 'c++', 'php', 'ruby', 'python', 'java', 'javascript'
+    'typescript' 'swift', 'scala', 'objective-c', 'shell', 'go', 
+    'c#', 'c++', 'php', 'ruby', 'python', 'java'
 ]
 RUSSIA = '113'
 url_hh = 'https://api.hh.ru/vacancies'
@@ -26,12 +26,13 @@ def collect_it_vacancies_hh(language):
     query = form_search_query_hh(language)
     url = url_hh
     while page <= pages_number:
+        query['page'] = page
         response = requests.get(url, params=query)
         try:
             response.raise_for_status()
             pages_number = response.json()['pages']
-            page += 1
             answer.append(response.json())
+            page += 1
         except requests.RequestException as err:
             print(err.response)
     return answer
@@ -208,5 +209,6 @@ if __name__ == '__main__':
         'X-Api-App-Id':str(token)
     }
  
+    
     show_tables_of_all_sources(LANGUAGES, api_headers)
-   
+    

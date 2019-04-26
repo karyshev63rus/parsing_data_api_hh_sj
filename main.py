@@ -24,11 +24,8 @@ def count_it_vacancies_hh(language):
     query = form_search_query_hh(language)
     response = requests.get(url_hh, params=query)
     response.raise_for_status()
-    try:
-        return ((response.json()['pages'], response.json()['found']))
-    except KeyError:
-        return (0, 0)
-
+    return ((response.json()['pages'], response.json()['found']))
+    
 def collect_it_vacancies_hh(language):
     """This function collects vacancies across programming languages through API hh.ru."""
     query = form_search_query_hh(language)
@@ -108,11 +105,8 @@ def count_it_vacancies_sj(language, api_headers):
         search_language], 'catalogues':'Разработка, программирование', 
         'period':30, 'town':4}, headers=api_headers)
     response.raise_for_status()
-    try:
-        return response.json()['total']
-    except KeyError:
-        None
-
+    return response.json()['total']
+    
 def collect_it_vacancies_sj(language, api_headers):
     """This function collects all vacancies across programming languages through API sj.ru."""
     search_language = '{}'.format(language)

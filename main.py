@@ -5,8 +5,8 @@ from terminaltables import AsciiTable
 
 
 LANGUAGES = [
-    'typescript', 'swift', 'scala', 'objective-c', 'shell', 'go', 
-    'c#', 'c++', 'php', 'ruby', 'python', 'java', 'javascript'
+    'typescript', 'swift', 'scala' #, 'objective-c', 'shell', 'go', 
+    # 'c#', 'c++', 'php', 'ruby', 'python', 'java', 'javascript'
 ]
 RUSSIA = '113'
 url_hh = 'https://api.hh.ru/vacancies'
@@ -83,7 +83,7 @@ def create_dataset_hh(language):
     }
     return vacancies_salary_by_language
 
-def build_and_print_table_hh(LANGUAGES):
+def build_table_hh(LANGUAGES):
     """This function builds a data table from sj.ru data."""
     title = 'HeadHunter Moscow'
     dataset_for_all_languages = {language:create_dataset_hh(language) for 
@@ -92,11 +92,10 @@ def build_and_print_table_hh(LANGUAGES):
         'average_salary']]
     for language, data in dataset_for_all_languages.items():
         table_row = [language]
-        data = [value for value in data.values()]
-        table_row.extend(data)
+        table_row.extend(data.values())
         table_content.append(table_row)
     return AsciiTable(table_content, title).table
-    
+     
 def count_it_vacancies_sj(language, api_headers):
     """This function calculates count of it vacancies through API sj.ru."""
     search_language = '{}'.format(language)
@@ -149,7 +148,7 @@ def create_dataset_sj(language, api_headers):
     }
     return vacancies_salary_by_language
 
-def build_and_print_table_sj(LANGUAGES, api_headers):
+def build_table_sj(LANGUAGES, api_headers):
     """This function builds a data table from sj.ru data."""
     title = 'SuperJob Moscow'
     dataset_for_all_languages = {language:create_dataset_sj(language, 
@@ -158,16 +157,15 @@ def build_and_print_table_sj(LANGUAGES, api_headers):
         'average_salary']]
     for language, data in dataset_for_all_languages.items():
         table_row = [language]
-        data = [value for value in data.values()]
-        table_row.extend(data)
+        table_row.extend(data.values())
         table_content.append(table_row)
     return AsciiTable(table_content, title).table
 
 def main(): 
     """This function prints two data tables from hh.ru and sj.ru data."""
     try:
-        print(build_and_print_table_hh(LANGUAGES))
-        print(build_and_print_table_sj(LANGUAGES, api_headers))
+        print(build_table_hh(LANGUAGES))
+        print(build_table_sj(LANGUAGES, api_headers))
     except requests.RequestException as err:
         print(err.response)
 
